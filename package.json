@@ -1,0 +1,28 @@
+{
+  "name": "@smarttuna/crypto-exchange-rates",
+  "version": "1.0.0",
+  "description": "Get crypto currency exchange rates",
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "mocha ./test/test.js",
+    "prepublish": "npm run build"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DongWon-Sehr/crypto-exchange-rates.git"
+  },
+  "keywords": [],
+  "author": {
+    "name": "DongWon-Sehr",
+    "email": "dongwon.sehr@gmail.com",
+    "url": "https://github.com/DongWon-Sehr"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DongWon-Sehr/crypto-exchange-rates/issues"
+  },
+  "homepage": "https://github.com/DongWon-Sehr/crypto-exchange-rates#readme"
+}
