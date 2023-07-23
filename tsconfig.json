@@ -5,7 +5,8 @@
         "outDir": "dist",
         "rootDir": "src",
         "strict": true,
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "lib": ["ES6", "dom"] // 여기에 "dom"을 추가합니다.
     },
     "include": [
         "src"
