@@ -2,13 +2,17 @@
   "name": "@smarttuna/crypto-exchange-rates",
   "version": "1.0.0",
   "description": "Get crypto currency exchange rates",
-  "main": "./lib/index.js",
+  "main": "./dis/main.js",
   "scripts": {
+    "build": "webpack --mode production",
     "test": "mocha ./test/test.js",
     "prepublish": "npm run build"
   },
   "devDependencies": {
-    "mocha": "^10.2.0"
+    "mocha": "^10.2.0",
+    "typescript": "^5.1.6",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
   },
   "repository": {
     "type": "git",
