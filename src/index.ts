@@ -1,8 +1,8 @@
-class CryptoExRates {
-    private sources: { [key: string]: { url: string } };
-    private cryptoRates: any;
-    private usdRates: any;
-    private source: string;
+export default class CryptoExRates {
+    public sources: { [key: string]: { url: string } };
+    public cryptoRates: any;
+    public usdRates: any;
+    public source: string;
 
     constructor(source: string = 'binance') {
         this.sources = {
@@ -19,11 +19,11 @@ class CryptoExRates {
         }
 
         this.source = source;
-        this.fetchCryptos();
-        this._get_usd_currency();
+        this._fetchCryptos();
+        this._fetchUSD();
     }
 
-    private fetchCryptos() {
+    private _fetchCryptos() {
         fetch(this.sources[this.source].url)
             .then(response => {
                 if (!response.ok) {
@@ -39,20 +39,29 @@ class CryptoExRates {
             });
     }
 
+    // private 메서드 래핑을 위한 public 메서드 추가
+    public testFetchCryptos() {
+        this._fetchCryptos();
+    }
+
+    public testFetchUSD() {
+        this._fetchUSD();
+    }
+
     setSource(source: string) {
         if (!this._isSupportSource(source)) {
             throw new Error('Invalid source. Please provide a valid source.');
         }
 
         this.source = source;
-        this.fetchCryptos();
+        this._fetchCryptos();
     }
 
     private _isSupportSource(source: string): boolean {
         return Object.keys(this.sources).map(key => key.toLowerCase()).includes(source.toLowerCase());
     }
 
-    private _get_usd_currency() {
+    private _fetchUSD() {
         const apiUrl = 'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd.json';
 
         fetch(apiUrl)
@@ -69,10 +78,4 @@ class CryptoExRates {
                 throw new Error('Error fetching USD rates:' + error);
             });
     }
-}
-
-if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
-    module.exports = CryptoExRates;
-} else {
-    (window as any).CryptoExRates = CryptoExRates;
 }
