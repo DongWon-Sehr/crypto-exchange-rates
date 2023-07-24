@@ -16,11 +16,11 @@ class CryptoExRates {
         }
 
         this.source = source;
-        this.fetchCryptos();
-        this._get_usd_currency();
+        this._fetchCryptos();
+        this._fetchUSD();
     }
 
-    fetchCryptos() {
+    _fetchCryptos() {
         fetch(this.sources[this.source].url)
             .then(response => {
                 if (!response.ok) {
@@ -42,14 +42,14 @@ class CryptoExRates {
         }
 
         this.source = source;
-        this.fetchCryptos();
+        this._fetchCryptos();
     }
 
     _isSupportSource(source) {
         return Object.keys(this.sources).map(key => key.toLowerCase()).includes(source.toLowerCase());
     }
 
-    _get_usd_currency() {
+    _fetchUSD() {
         const apiUrl = 'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd.json';
 
         fetch(apiUrl)

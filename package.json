@@ -5,7 +5,8 @@
   "main": "./dis/main.js",
   "scripts": {
     "build": "webpack --mode production",
-    "test": "mocha --require ts-node/register ./test/test.ts",
+    "test-js": "mocha ./test/test.js",
+    "test-ts": "mocha --require ts-node/register --require node-fetch ./test/test.ts",
     "prepublish": "npm run build"
   },
   "devDependencies": {
@@ -15,6 +16,8 @@
     "@types/node-fetch": "^2.6.4",
     "@types/sinon": "^10.0.15",
     "chai": "^4.3.7",
+    "cross-fetch": "^4.0.0",
+    "fetch-mock": "^9.11.0",
     "mocha": "^10.2.0",
     "node-fetch": "^2.6.12",
     "sinon": "^15.2.0",
