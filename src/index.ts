@@ -1,7 +1,20 @@
+interface CryptoRate {
+    [symbol: string]: {
+        USD: number;
+    };
+}
+
+interface UsdRates {
+    date: string;
+    usd: {
+        [currency: string]: number;
+    };
+}
+
 export default class CryptoExRates {
     public sources: { [key: string]: { url: string } };
-    public cryptoRates: any;
-    public usdRates: any;
+    public cryptoRates: CryptoRate = {};
+    public usdRates: UsdRates = { date: '', usd: {} };
     public source: string;
 
     constructor(source: string = 'binance') {
@@ -32,11 +45,31 @@ export default class CryptoExRates {
                 return response.json();
             })
             .then(data => {
-                this.cryptoRates = data;
+                if (this.source === 'binance') {
+                    this.cryptoRates = this._convertBinanceResponse(data);
+                } else if (this.source === 'coinpaprika') {
+                    this.cryptoRates = this._convertCoinpaprikaResponse(data);
+                } else {
+                    throw new Error('Invalid source. Please provide a valid source.');
+                }
             })
             .catch(error => {
                 throw new Error('Error fetching crypto rates:' + error);
             });
+    }
+
+    private _convertBinanceResponse(data: any): CryptoRate {
+        return data.reduce((cryptoRates: CryptoRate, crypto: any) => {
+            cryptoRates[crypto.symbol] = { USD: parseFloat(crypto.price) };
+            return cryptoRates;
+        }, {});
+    }
+
+    private _convertCoinpaprikaResponse(data: any): CryptoRate {
+        return data.reduce((cryptoRates: CryptoRate, crypto: any) => {
+            cryptoRates[crypto.symbol] = { USD: crypto.quotes.USD.price };
+            return cryptoRates;
+        }, {});
     }
 
     // private 메서드 래핑을 위한 public 메서드 추가
