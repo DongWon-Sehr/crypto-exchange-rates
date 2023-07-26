@@ -1,17 +1,17 @@
 const { expect } = require('chai');
 const { describe, it, beforeEach, afterEach } = require('mocha');
-const CryptoExRates = require('../src/index');
+const CryptoExRates = require('../src/_index');
 const fetchMock = require('fetch-mock');
-const fetch = require('cross-fetch');
+// const fetch = require('cross-fetch');
 
 describe('CryptoExRates', function () {
     beforeEach(function () {
         fetchMock.reset(); // 기존 모든 fetch 호출을 초기화합니다.
 
         fetchMock.mock('https://api.binance.com/api/v3/ticker/price', [
-            { symbol: 'ETHBTC', price: '0.06367000' },
-            { symbol: 'LTCBTC', price: '0.00306700' },
-            { symbol: "BNBBTC", price: "0.00813000" }
+            { "symbol": 'ETHBTC', "price": '0.06367000' },
+            { "symbol": 'LTCBTC', "price": '0.00306700' },
+            { "symbol": "BNBBTC", "price": "0.00813000" }
         ]);
 
         fetchMock.mock('https://api.coinpaprika.com/v1/tickers', [
