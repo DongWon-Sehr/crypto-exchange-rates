@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { describe, it, beforeEach } from 'mocha';
 import CryptoExRates from '../src/index';
 import fetchMock from 'fetch-mock';
-import fetch from 'cross-fetch';
+// import fetch from 'cross-fetch';
 
 describe('CryptoExRates', function () {
     beforeEach(function () {
