@@ -3,15 +3,20 @@
         "target": "ES6",
         "module": "commonjs",
         "outDir": "dist",
-        "rootDir": "src",
+        // "rootDir": ["src", "test"], 
         "strict": true,
         "esModuleInterop": true,
-        "lib": ["ES6", "dom"] // 여기에 "dom"을 추가합니다.
+        "lib": ["ES6", "dom"], // 여기에 "dom"을 추가합니다.
+        // "types": ["node"]
+        "moduleResolution": "node", // Specify module resolution as "node"
+        "allowJs": true // Allow importing JavaScript files in addition to TypeScript files
     },
     "include": [
-        "src"
+        "src",
+        "test"
     ],
     "ts-node": {
         "esm": true
-    }
+    },
+    "type": "module"
 }
