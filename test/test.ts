@@ -1,8 +1,15 @@
-import { expect } from 'chai';
-import { describe, it, beforeEach } from 'mocha';
-import CryptoExRates from '../src/index';
-import fetchMock from 'fetch-mock';
+// import { expect } from 'chai';
+// import { describe, it, beforeEach } from 'mocha';
+// import CryptoExRates from '../src/index.ts';
+// import fetchMock from 'fetch-mock';
+
 // import fetch from 'cross-fetch';
+
+const { expect } = require('chai');
+import { describe, it, beforeEach } from 'mocha';
+const fetchMock = require('fetch-mock');
+const CryptoExRates = require('../src/index').default; // Use require instead of import
+
 
 describe('CryptoExRates', function () {
     beforeEach(function () {
